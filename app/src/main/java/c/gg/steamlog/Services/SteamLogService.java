@@ -29,6 +29,22 @@ public interface SteamLogService {
 
     @GET("usuario/{nickname}/{senha}")
     Call<Usuario> buscarPorLoginESenha(@Query("nickname") String nickname, @Query("senha") String senha);
+    //fim dos metodos do usuario
+
+    //inicio dos metodos das imagens
+    @POST("imagens/")
+    Call<Imagens> inserirImagem(@Body Imagens imagens);
+
+    @DELETE("imagens/")
+    Call<Void> excluirImagem(@Query("idImagem") long id);
+
+    @GET("imagens/")
+    Call<List<Imagens>> listaTodasImagens();
+
+    @GET("imagens/")
+    Call<Imagens> buscarImagemPorId(@Query("idImagem") long id);
+    //fim dos metodos das imagens
+
 
 
 
