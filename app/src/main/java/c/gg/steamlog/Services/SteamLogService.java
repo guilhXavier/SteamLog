@@ -9,7 +9,7 @@ import retrofit2.http.*;
 public interface SteamLogService {
 
     //url base
-    public final String BASE_URL = "http://localhost:8080/";
+    public final String BASE_URL = "http://192.168.1.104:8080/";
 
     //inicio dos metodos Usuario
     @POST("usuario/")
@@ -28,7 +28,7 @@ public interface SteamLogService {
     Call<Usuario> buscarUsuarioPorId(@Query("idUsuario") long id);
 
     @GET("usuario/{nickname}/{senha}")
-    Call<Usuario> buscarPorLoginESenha(@Path("nickname") String nickname, @Path("senha") String senha);
+    Call<Usuario> buscarPorLoginESenha(@Path("nickname") String nickname,@Path("senha") String senha);
     //fim dos metodos do usuario
 
     //inicio dos metodos das imagens

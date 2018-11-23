@@ -1,16 +1,24 @@
 package c.gg.steamlog;
 
 import android.net.Uri;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import c.gg.steamlog.Model.Usuario;
 
 public class Perfil extends AppCompatActivity {
 
+    private DrawerLayout drawerLayoutPerfil;
+    private ActionBarDrawerToggle toggle;
+    private NavigationView navigationView;
     private ActionBar actionBar;
     private ImageView imvFotoPerfil;
     private TextView tvBemVindo,tvEmail,tvNumeroJogos,tvNumeroConquistas,tvSteamid;
@@ -25,7 +33,12 @@ public class Perfil extends AppCompatActivity {
 
         usuario = (Usuario) getIntent().getSerializableExtra("usuario");
         this.actionBar.setTitle(R.string.perfil);
-        Uri fotoPerfil = Uri.parse(usuario.getImagens().getArquivoImagem().toString());
+        this.drawerLayoutPerfil.addDrawerListener(this.toggle);
+        this.toggle.syncState();
+        this.actionBar.setDisplayHomeAsUpEnabled(true);
+
+        Toast.makeText(this,usuario.getImagens().getArquivoImagem(),Toast.LENGTH_SHORT).show();
+        Uri fotoPerfil = Uri.parse(usuario.getImagens().getArquivoImagem());
         this.imvFotoPerfil.setImageURI(fotoPerfil);
         this.tvBemVindo.setText("Bem Vindo,"+usuario.getNickname());
         this.tvEmail.setText("Emai:"+usuario.getEmail());
@@ -37,6 +50,9 @@ public class Perfil extends AppCompatActivity {
     }
 
     private void inicializarComponentes(){
+        this.drawerLayoutPerfil = findViewById(R.id.drawerlayout_perfill);
+        this.toggle = new ActionBarDrawerToggle(this,this.drawerLayoutPerfil,R.string.open,R.string.close);
+        this.navigationView = findViewById(R.id.nv_layout_perfil);
         this.actionBar = getSupportActionBar();
         this.imvFotoPerfil = findViewById(R.id.imv_foto_perfil);
         this.tvBemVindo = findViewById(R.id.tv_bemvindo_perfil);
@@ -44,5 +60,14 @@ public class Perfil extends AppCompatActivity {
         this.tvNumeroJogos = findViewById(R.id.tv_numerojogos_perfil);
         this.tvNumeroConquistas = findViewById(R.id.tv_numeroconquistas_perfil);
         this.tvSteamid = findViewById(R.id.tv_steamid_perfil);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(this.toggle.onOptionsItemSelected(item)){
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

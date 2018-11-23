@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/nav_perfil"
+        android:title="@string/perfil">
+    </item>
+
+    <item android:id="@+id/nav_post"
+        android:title="@string/post">
+    </item>
+
+    <item android:id="@+id/nav_ranking"
+        android:title="@string/ranking">
+    </item>
+
+    <item android:id="@+id/nav_estatisticas"
+        android:title="@string/estatisticas">
+    </item>
+
+</menu>

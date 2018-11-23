@@ -18,4 +18,9 @@
     <string name="email2">Email:</string>
     <string name="steamid2">SteamId:</string>
     <string name="perfil">Perfil</string>
+    <string name="post">Post</string>
+    <string name="ranking">Ranking</string>
+    <string name="estatisticas">Estatísticas</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 </resources>
