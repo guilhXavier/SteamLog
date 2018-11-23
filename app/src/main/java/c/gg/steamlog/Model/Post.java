@@ -19,7 +19,7 @@ public class Post {
 		return this.idUsuarioPostagem;
 	}
 
-	public void setId_usuario_id_post(long idUsuarioPostagem) {
+	public void setIdUsuarioPostagem(long idUsuarioPostagem) {
 		this.idUsuarioPostagem = idUsuarioPostagem;
 	}
 

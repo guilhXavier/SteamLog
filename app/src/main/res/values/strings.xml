@@ -2,4 +2,20 @@
     <string name="app_name">SteamLog</string>
     <string name="botao_ir">Ir</string>
     <string name="teste">Vamo ver se vai ir</string>
+    <string name="todo">TODO</string>
+    <string name="senha">Senha</string>
+    <string name="nickname">Nickname</string>
+    <string name="registre_se">Registre-se</string>
+    <string name="logar">Logar</string>
+    <string name="cadastro">Cadastro</string>
+    <string name="userimage">UserImage</string>
+    <string name="steamid">SteamID</string>
+    <string name="email">Email</string>
+    <string name="registrar">Registrar</string>
+    <string name="bem_vindo">Bem Vindo</string>
+    <string name="numero_de_conquistas">Numero de Conquistas:</string>
+    <string name="nuemro_de_jogos">Nuemro de Jogos:</string>
+    <string name="email2">Email:</string>
+    <string name="steamid2">SteamId:</string>
+    <string name="perfil">Perfil</string>
 </resources>

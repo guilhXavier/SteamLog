@@ -1,8 +1,9 @@
 package c.gg.steamlog.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Imagens {
+public class Imagens implements Serializable {
 	
 	private long idImagem;
 	private short tipoImagem;
@@ -12,11 +13,11 @@ public class Imagens {
 	
 	public Imagens() {}
 	
-	public Imagens(long idImagem, short tipo_imagem, String arquivo_imagem, ArrayList<ImagemPostagem> listImagemPostagem, ArrayList<Usuario> listusuario) {
+	public Imagens(long idImagem, short tipoImagem, String arquivoImagem, ArrayList<ImagemPostagem> listImagemPostagem, ArrayList<Usuario> listusuario) {
 		super();
 		this.idImagem = idImagem;
-		this.tipoImagem = tipo_imagem;
-		this.arquivoImagem = arquivo_imagem;
+		this.tipoImagem = tipoImagem;
+		this.arquivoImagem = arquivoImagem;
 		this.listusuario = listusuario;
 		this.listImagemPostagem = listImagemPostagem;
 	}
