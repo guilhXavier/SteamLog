@@ -44,7 +44,7 @@ public class Perfil extends AppCompatActivity {
         Uri fotoPerfil = Uri.parse(usuario.getImagens().getArquivoImagem());
         this.imvFotoPerfil.setImageURI(fotoPerfil);
         this.tvBemVindo.setText("Bem Vindo,"+usuario.getNickname());
-        this.tvEmail.setText("Emai:"+usuario.getEmail());
+        this.tvEmail.setText("Email:"+usuario.getEmail());
         this.tvNumeroJogos.setText("Numero de jogos:"+usuario.getNumJogos());
         this.tvNumeroConquistas.setText("Numero de Conquistas:"+usuario.getNumConquistas());
         this.tvSteamid.setText("SteamID:"+usuario.getSteamid());
