@@ -1,5 +1,7 @@
 package c.gg.steamlog.ModelSteam;
 
+//STEAMSPY
+
 public class GetAppDetailsRequest {
 
     private long appid;
