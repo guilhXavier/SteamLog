@@ -8,6 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import c.gg.steamlog.Services.SteamSpyService;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import static c.gg.steamlog.Services.SteamSpyService.BASE_URL_STEAM_SPY;
+
 public class ExposicaoEstatisticas extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
@@ -16,6 +22,7 @@ public class ExposicaoEstatisticas extends Fragment {
 
     private String mParam1;
     private String mParam2;
+    private Retrofit retrofitSteamSpy;
 
     private OnFragmentInteractionListener mListener;
 
@@ -40,6 +47,15 @@ public class ExposicaoEstatisticas extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        this.retrofitSteamSpy = new Retrofit.Builder()
+                .baseUrl(BASE_URL_STEAM_SPY)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        SteamSpyService steamSpyService = retrofitSteamSpy.create(SteamSpyService.class);
+
+
     }
 
     @Override

@@ -41,10 +41,6 @@ public class Estatisticas extends AppCompatActivity{
     private void inicializarComponentes() {
         this.btPesquisar = findViewById(R.id.bt_pesquisar);
         this.edtxtAppid = findViewById(R.id.edtxt_appid);
-        this.retrofitSteamSpy = new Retrofit.Builder()
-                .baseUrl(BASE_URL_STEAM_SPY)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
     }
 
 
