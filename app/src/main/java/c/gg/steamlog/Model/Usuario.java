@@ -8,7 +8,7 @@ public class Usuario implements Serializable {
 	private String email;
 	private String nickname;
 	private String senha;
-	private int steamid;
+	private long steamid;
 	private String fotoPerfil;
 	private int numJogos;
 	private int numConquistas;
@@ -21,7 +21,7 @@ public class Usuario implements Serializable {
 		
 	}
 	
-	public Usuario(long idUsuario, String email, String nickname, String senha, int steamid, String fotoPerfil,int numJogos, int numConquistas, Imagens imagens, ArrayList<Post> listPost, ArrayList<Ranking> listrankings) {
+	public Usuario(long idUsuario, String email, String nickname, String senha, long steamid, String fotoPerfil,int numJogos, int numConquistas, Imagens imagens, ArrayList<Post> listPost, ArrayList<Ranking> listrankings) {
 		super();
 		this.idUsuario = idUsuario;
 		this.email = email;
@@ -69,11 +69,11 @@ public class Usuario implements Serializable {
 		this.senha = senha;
 	}
 
-	public int getSteamid() {
+	public long getSteamid() {
 		return steamid;
 	}
 
-	public void setSteamid(int steamid) {
+	public void setSteamid(long steamid) {
 		this.steamid = steamid;
 	}
 

@@ -32,7 +32,7 @@ public class Home extends AppCompatActivity {
     private EditText edNickname, edSenha;
     private Button btLogar;
     private TextView tvRegistrar;
-    private Retrofit retrofit;
+    private Retrofit retrofitServer, retrofitSteam;
     private Usuario usuario;
 
     @Override
@@ -44,7 +44,9 @@ public class Home extends AppCompatActivity {
         this.btLogar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SteamLogService service = retrofit.create(SteamLogService.class);
+
+                final SteamAPIService apiService = retrofitSteam.create(SteamAPIService.class);
+                final SteamLogService service = retrofitServer.create(SteamLogService.class);
                 Call<Usuario>buscar = service.buscarPorLoginESenha(edNickname.getText().toString(),edSenha.getText().toString());
                 buscar.enqueue(new Callback<Usuario>() {
                     @Override
@@ -53,9 +55,41 @@ public class Home extends AppCompatActivity {
                             Log.e("ResponseError:","Erro:"+response.code());
                         } else{
                             usuario = response.body();
-                            Intent intent = new Intent(Home.this,Perfil.class);
-                            intent.putExtra("usuario",usuario);
-                            startActivity(intent);
+                            Call<GetOwnedGames> gamesCount = apiService.ownedGames("802A0913D1CB0336DFE046F0294F4B04",Long.toString(usuario.getSteamid()));
+                            gamesCount.enqueue(new Callback<GetOwnedGames>() {
+                                @Override
+                                public void onResponse(Call<GetOwnedGames> call, Response<GetOwnedGames> response) {
+                                    if(!response.isSuccessful()){
+                                        Log.e("SteamResponseFailure:","Erro:"+response.code());
+                                    } else{
+                                        GetOwnedGames games = response.body();
+                                        usuario.setNumJogos(Integer.parseInt(games.getResponse().getGame_Count()));
+                                        Call<Void> editar = service.editarUsuario(usuario);
+                                        editar.enqueue(new Callback<Void>() {
+                                            @Override
+                                            public void onResponse(Call<Void> call, Response<Void> response) {
+                                                if(!response.isSuccessful()){
+                                                    Log.e("EditarResponseFailure:","Erro:"+response.code());
+                                                }else {
+                                                    Intent intent = new Intent(Home.this,Perfil.class);
+                                                    intent.putExtra("usuario",usuario);
+                                                    startActivity(intent);
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onFailure(Call<Void> call, Throwable t) {
+                                                Log.e("EditarFailure:",t.getMessage());
+                                            }
+                                        });
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<GetOwnedGames> call, Throwable t) {
+                                    Log.e("SteamFailure",t.getMessage());
+                                }
+                            });
                         }
                     }
 
@@ -88,8 +122,13 @@ public class Home extends AppCompatActivity {
         this.edSenha = findViewById(R.id.ed_senha_home);
         this.btLogar = findViewById(R.id.bt_logar_home);
         this.tvRegistrar = findViewById(R.id.tv_registar_home);
-        this.retrofit = new Retrofit.Builder()
+        this.retrofitServer = new Retrofit.Builder()
                 .baseUrl(BASE_URL_SERVER)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        this.retrofitSteam = new Retrofit.Builder()
+                .baseUrl(BASE_URL_STEAM_API)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
