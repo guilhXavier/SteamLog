@@ -12,19 +12,20 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Home"
-            android:theme="@style/AppTheme">
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity android:name=".Cadastro" />
         <activity android:name=".Perfil" />
         <activity android:name=".Estatisticas" />
-        <activity android:name=".SplashActivity"
+        <activity
+            android:name=".SplashActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+        <activity android:name=".Jogo"></activity>
     </application>
 
 </manifest>
