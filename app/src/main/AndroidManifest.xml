@@ -6,9 +6,8 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/steam_log_icon"
+        android:icon="@drawable/steamlogicon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
