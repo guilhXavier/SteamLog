@@ -1,7 +1,10 @@
 package c.gg.steamlog;
 
+import android.content.Intent;
 import android.net.Uri;
 //import android.support.design.widget.NavigationView;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -18,7 +21,7 @@ public class Perfil extends AppCompatActivity {
 
     private DrawerLayout drawerLayoutPerfil;
     private ActionBarDrawerToggle toggle;
-//    private NavigationView navigationView;
+    private NavigationView navigationView;
     private ActionBar actionBar;
     private ImageView imvFotoPerfil;
     private TextView tvBemVindo,tvEmail,tvNumeroJogos,tvNumeroConquistas,tvSteamid;
@@ -46,13 +49,28 @@ public class Perfil extends AppCompatActivity {
         this.tvNumeroConquistas.setText("Numero de Conquistas:"+usuario.getNumConquistas());
         this.tvSteamid.setText("SteamID:"+usuario.getSteamid());
 
+        this.navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()){
+
+                    case R.id.nav_estatisticas:
+                        Intent intent = new Intent(Perfil.this,Estatisticas.class);
+                        startActivity(intent);
+                }
+
+                return false;
+            }
+        });
+
 
     }
 
     private void inicializarComponentes(){
         this.drawerLayoutPerfil = findViewById(R.id.drawerlayout_perfill);
         this.toggle = new ActionBarDrawerToggle(this,this.drawerLayoutPerfil,R.string.open,R.string.close);
-//        this.navigationView = findViewById(R.id.nv_layout_perfil);
+        this.navigationView = findViewById(R.id.nv_layout_perfil);
         this.actionBar = getSupportActionBar();
         this.imvFotoPerfil = findViewById(R.id.imv_foto_perfil);
         this.tvBemVindo = findViewById(R.id.tv_bemvindo_perfil);

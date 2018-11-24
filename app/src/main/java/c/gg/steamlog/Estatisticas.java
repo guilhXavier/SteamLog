@@ -2,6 +2,9 @@ package c.gg.steamlog;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.*;
@@ -15,7 +18,8 @@ public class Estatisticas extends AppCompatActivity{
 
     private Button btPesquisar;
     private EditText edtxtAppid;
-    private Retrofit retrofitSteamSpy;
+    private FragmentManager fm = getSupportFragmentManager();
+    private FragmentTransaction ft;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -26,10 +30,17 @@ public class Estatisticas extends AppCompatActivity{
         btPesquisar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Fragment fragment;
                 if(edtxtAppid.getText()!=null){
+
+                    fragment = new ExposicaoEstatisticas();
                     String s = edtxtAppid.getText().toString();
-                    Intent myIntent = new Intent(Estatisticas.this, ExposicaoEstatisticas.class);
-                    myIntent.putExtra("appId", s);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("appid",s);
+                    fragment.setArguments(bundle);
+                    ft.replace(R.id.fragment_container,fragment);
+                    ft.commit();
+
                 }else{
                     Toast.makeText(Estatisticas.this,"Insira o appid, mi amigo",Toast.LENGTH_SHORT).show();
                 }
@@ -41,6 +52,7 @@ public class Estatisticas extends AppCompatActivity{
     private void inicializarComponentes() {
         this.btPesquisar = findViewById(R.id.bt_pesquisar);
         this.edtxtAppid = findViewById(R.id.edtxt_appid);
+        this.ft = fm.beginTransaction();
     }
 
 

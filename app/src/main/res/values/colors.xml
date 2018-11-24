@@ -3,10 +3,12 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
     <color name="BackGroundTelasColor">#000030</color>
     <color name="ToolbarButtonsColor">#200051</color>
     <color name="StatusbarColor">#8190a5</color>
     <color name="NavigatioDrawerMenuColor">#3a217e</color>
     <color name="SecondTextColor">#8492a6</color>
     <color name="BackGourndTextViewsColor">#081c54</color>
+
 </resources>
