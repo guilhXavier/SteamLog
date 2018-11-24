@@ -9,7 +9,7 @@ import retrofit2.http.*;
 public interface SteamLogService {
 
     //url base
-    public final String BASE_URL = "http://localhost:8080/";
+    public final String BASE_URL = "http://192.168.0.4:8080/";
 
     //inicio dos metodos Usuario
     @POST("usuario/")
