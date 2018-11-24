@@ -8,7 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import c.gg.steamlog.ModelSteam.GetAppDetailsRequest;
 import c.gg.steamlog.Services.SteamSpyService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -54,7 +58,19 @@ public class ExposicaoEstatisticas extends Fragment {
                 .build();
 
         SteamSpyService steamSpyService = retrofitSteamSpy.create(SteamSpyService.class);
+        Call<GetAppDetailsRequest> getAppDetailsCall = steamSpyService.getAppDetails("appdetails", 730);
 
+        getAppDetailsCall.enqueue(new Callback<GetAppDetailsRequest>() {
+            @Override
+            public void onResponse(Call<GetAppDetailsRequest> call, Response<GetAppDetailsRequest> response) {
+                GetAppDetailsRequest getAppDetailsObj = response.body();
+            }
+
+            @Override
+            public void onFailure(Call<GetAppDetailsRequest> call, Throwable t) {
+                System.out.println("nao deu");
+            }
+        });
 
     }
 
