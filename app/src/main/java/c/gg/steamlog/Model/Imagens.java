@@ -1,7 +1,12 @@
 package c.gg.steamlog.Model;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import android.util.Base64;
 
 public class Imagens implements Serializable {
 	
@@ -61,5 +66,7 @@ public class Imagens implements Serializable {
 	public void setListImagemPostagem(ArrayList<ImagemPostagem> listImagemPostagem) {
 		this.listImagemPostagem = listImagemPostagem;
 	}
+
+
 	
 }
