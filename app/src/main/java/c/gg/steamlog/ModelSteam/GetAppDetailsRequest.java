@@ -1,6 +1,6 @@
 package c.gg.steamlog.ModelSteam;
 
-public class AppDetails {
+public class GetAppDetailsRequest {
 
     private long appid;
     private String name;
@@ -22,7 +22,7 @@ public class AppDetails {
     private String genre;
     private int concurrentUsers;
 
-    public AppDetails(long appid, String name, String developer, String publisher, int scoreRank, long positiveReview, long negativeReview, int userscore, String owners, int avgForever, int avg2Weeks, int medianForever, int median2Weeks, String price, String initialPrice, String discount, String languages, String genre, int concurrentUsers) {
+    public GetAppDetailsRequest(long appid, String name, String developer, String publisher, int scoreRank, long positiveReview, long negativeReview, int userscore, String owners, int avgForever, int avg2Weeks, int medianForever, int median2Weeks, String price, String initialPrice, String discount, String languages, String genre, int concurrentUsers) {
         this.appid = appid;
         this.name = name;
         this.developer = developer;

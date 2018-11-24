@@ -24,7 +24,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static c.gg.steamlog.Services.SteamLogService.BASE_URL;
+import static c.gg.steamlog.Services.SteamLogService.BASE_URL_SERVER;
 
 public class Cadastro extends AppCompatActivity {
 
@@ -130,7 +130,7 @@ public class Cadastro extends AppCompatActivity {
         this.btRegistrar = findViewById(R.id.bt_registrar_cadastro);
 
         this.retrofit  = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(BASE_URL_SERVER)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
