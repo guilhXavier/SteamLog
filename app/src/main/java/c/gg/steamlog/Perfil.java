@@ -40,9 +40,9 @@ public class Perfil extends AppCompatActivity {
         this.toggle.syncState();
         this.actionBar.setDisplayHomeAsUpEnabled(true);
 
-        Toast.makeText(this,usuario.getImagens().getArquivoImagem(),Toast.LENGTH_SHORT).show();
-        Uri fotoPerfil = Uri.parse(usuario.getImagens().getArquivoImagem());
-        this.imvFotoPerfil.setImageURI(fotoPerfil);
+//        Toast.makeText(this,usuario.getImagens().getArquivoImagem(),Toast.LENGTH_SHORT).show();
+//        Uri fotoPerfil = Uri.parse(usuario.getImagens().getArquivoImagem());
+//        this.imvFotoPerfil.setImageURI(fotoPerfil);
         this.tvBemVindo.setText("Bem Vindo,"+usuario.getNickname());
         this.tvEmail.setText("Email:"+usuario.getEmail());
         this.tvNumeroJogos.setText("Numero de jogos:"+usuario.getNumJogos());
@@ -52,12 +52,17 @@ public class Perfil extends AppCompatActivity {
         this.navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
+                Intent intent;
                 switch (item.getItemId()){
 
                     case R.id.nav_estatisticas:
-                        Intent intent = new Intent(Perfil.this,Estatisticas.class);
+                         intent = new Intent(Perfil.this,Estatisticas.class);
                         startActivity(intent);
+                        break;
+                    case R.id.nav_ranking:
+                        intent = new Intent(Perfil.this,Ranking.class);
+                        startActivity(intent);
+                        break;
                 }
 
                 return false;

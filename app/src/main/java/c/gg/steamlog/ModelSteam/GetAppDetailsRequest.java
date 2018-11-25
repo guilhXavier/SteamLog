@@ -8,42 +8,42 @@ public class GetAppDetailsRequest {
     private String name;
     private String developer;
     private String publisher;
-    private int scoreRank;
-    private long positiveReview;
-    private long negativeReview;
+    private int score_rank;
+    private long positive;
+    private long negative;
     private int userscore;
     private String owners;
-    private int avgForever;
-    private int avg2Weeks;
-    private int medianForever;
-    private int median2Weeks;
+    private int average_forever;
+    private int average_2weeks;
+    private int median_forever;
+    private int median_2weeks;
     private String price;
-    private String initialPrice;
+    private String initialprice;
     private String discount;
     private String languages;
     private String genre;
-    private int concurrentUsers;
+    private int ccu;
 
     public GetAppDetailsRequest(long appid, String name, String developer, String publisher, int scoreRank, long positiveReview, long negativeReview, int userscore, String owners, int avgForever, int avg2Weeks, int medianForever, int median2Weeks, String price, String initialPrice, String discount, String languages, String genre, int concurrentUsers) {
         this.appid = appid;
         this.name = name;
         this.developer = developer;
         this.publisher = publisher;
-        this.scoreRank = scoreRank;
-        this.positiveReview = positiveReview;
-        this.negativeReview = negativeReview;
+        this.score_rank = scoreRank;
+        this.positive = positiveReview;
+        this.negative = negativeReview;
         this.userscore = userscore;
         this.owners = owners;
-        this.avgForever = avgForever;
-        this.avg2Weeks = avg2Weeks;
-        this.medianForever = medianForever;
-        this.median2Weeks = median2Weeks;
+        this.average_forever = avgForever;
+        this.average_2weeks = avg2Weeks;
+        this.median_forever = medianForever;
+        this.median_2weeks = median2Weeks;
         this.price = price;
-        this.initialPrice = initialPrice;
+        this.initialprice = initialPrice;
         this.discount = discount;
         this.languages = languages;
         this.genre = genre;
-        this.concurrentUsers = concurrentUsers;
+        this.ccu = concurrentUsers;
     }
 
     public long getAppid() {
@@ -79,27 +79,27 @@ public class GetAppDetailsRequest {
     }
 
     public int getScoreRank() {
-        return scoreRank;
+        return score_rank;
     }
 
     public void setScoreRank(int scoreRank) {
-        this.scoreRank = scoreRank;
+        this.score_rank = scoreRank;
     }
 
     public long getPositiveReview() {
-        return positiveReview;
+        return positive;
     }
 
     public void setPositiveReview(long positiveReview) {
-        this.positiveReview = positiveReview;
+        this.positive = positiveReview;
     }
 
     public long getNegativeReview() {
-        return negativeReview;
+        return negative;
     }
 
     public void setNegativeReview(long negativeReview) {
-        this.negativeReview = negativeReview;
+        this.negative = negativeReview;
     }
 
     public int getUserscore() {
@@ -119,35 +119,35 @@ public class GetAppDetailsRequest {
     }
 
     public int getAvgForever() {
-        return avgForever;
+        return average_forever;
     }
 
     public void setAvgForever(int avgForever) {
-        this.avgForever = avgForever;
+        this.average_forever = avgForever;
     }
 
     public int getAvg2Weeks() {
-        return avg2Weeks;
+        return average_2weeks;
     }
 
     public void setAvg2Weeks(int avg2Weeks) {
-        this.avg2Weeks = avg2Weeks;
+        this.average_2weeks = avg2Weeks;
     }
 
     public int getMedianForever() {
-        return medianForever;
+        return median_forever;
     }
 
     public void setMedianForever(int medianForever) {
-        this.medianForever = medianForever;
+        this.median_forever = medianForever;
     }
 
     public int getMedian2Weeks() {
-        return median2Weeks;
+        return median_2weeks;
     }
 
     public void setMedian2Weeks(int median2Weeks) {
-        this.median2Weeks = median2Weeks;
+        this.median_2weeks = median2Weeks;
     }
 
     public String getPrice() {
@@ -159,11 +159,11 @@ public class GetAppDetailsRequest {
     }
 
     public String getInitialPrice() {
-        return initialPrice;
+        return initialprice;
     }
 
     public void setInitialPrice(String initialPrice) {
-        this.initialPrice = initialPrice;
+        this.initialprice = initialPrice;
     }
 
     public String getDiscount() {
@@ -191,10 +191,10 @@ public class GetAppDetailsRequest {
     }
 
     public int getConcurrentUsers() {
-        return concurrentUsers;
+        return ccu;
     }
 
     public void setConcurrentUsers(int concurrentUsers) {
-        this.concurrentUsers = concurrentUsers;
+        this.ccu = concurrentUsers;
     }
 }

@@ -1,9 +1,12 @@
 package c.gg.steamlog;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import c.gg.steamlog.ModelSteam.GetAppDetailsRequest;
 import c.gg.steamlog.ModelSteam.GetNumberOfConcurrentPlayers;
@@ -21,6 +24,7 @@ import static c.gg.steamlog.Services.SteamSpyService.BASE_URL_STEAM_SPY;
 
 public class Jogo extends AppCompatActivity {
 
+    private ActionBar actionBar;
     private TextView edNome, edAppid, edDeveloperPublisher, edPositiveNegativeUserScore, edPriceInitialPrice, edLanguages, edGenre, edCCUYesterdayToday;
     private Retrofit retrofitSteamSpy, retrofitSteamAPI;
 
@@ -29,42 +33,48 @@ public class Jogo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jogo);
         inicializarComponentes();
+        actionBar.setTitle("Jogo");
         final Intent meuIntent = getIntent();
 
         SteamSpyService steamSpyService = retrofitSteamSpy.create(SteamSpyService.class);
         final SteamAPIService steamAPIService = retrofitSteamAPI.create(SteamAPIService.class);
 
-        Call<GetAppDetailsRequest> getAppDetailsCall = steamSpyService.getAppDetails("appdetails", meuIntent.getLongExtra("appid", 730));
+        final Call<GetAppDetailsRequest> getAppDetailsCall = steamSpyService.getAppDetails("appdetails", meuIntent.getLongExtra("appid", 730));
         getAppDetailsCall.enqueue(new Callback<GetAppDetailsRequest>() {
             @Override
             public void onResponse(Call<GetAppDetailsRequest> call, Response<GetAppDetailsRequest> response) {
-                final GetAppDetailsRequest getAppDetailsObj = response.body();
-                edNome.setText(getAppDetailsObj.getName());
-                edAppid.setText(getAppDetailsObj.getAppid()+"");
-                edDeveloperPublisher.setText("Desenvolvedora: "+ getAppDetailsObj.getDeveloper() + " / Publisher: " + getAppDetailsObj.getPublisher());
-                edPositiveNegativeUserScore.setText("Pontuação dos Usuários: " + getAppDetailsObj.getUserscore() + " / Reviews Positivas: " + getAppDetailsObj.getPositiveReview() + " / Reviews Negativas: " + getAppDetailsObj.getNegativeReview());
-                edPriceInitialPrice.setText("Preço Inicial em US$: " + algoritmoDoCaralho(getAppDetailsObj.getInitialPrice()) + " / Preço Atual em US$: " + algoritmoDoCaralho(getAppDetailsObj.getPrice()) + " / Desconto: " + getAppDetailsObj.getDiscount());
-                edLanguages.setText("Línguas: " + getAppDetailsObj.getLanguages());
-                edGenre.setText("Gênero: " + getAppDetailsObj.getGenre());
+                if(!response.isSuccessful()){
+                    Log.e("ResponseErro:","Erro:"+response.code());
+                } else {
+                    final GetAppDetailsRequest getAppDetailsObj = response.body();
+                    edNome.setText(getAppDetailsObj.getName());
+                    edAppid.setText(getAppDetailsObj.getAppid()+"");
+                    edDeveloperPublisher.setText("Desenvolvedora: "+ getAppDetailsObj.getDeveloper() + " / Publisher: " + getAppDetailsObj.getPublisher());
+                    edPositiveNegativeUserScore.setText("Pontuação dos Usuários: " + getAppDetailsObj.getUserscore() + " / Reviews Positivas: " + getAppDetailsObj.getPositiveReview() + " / Reviews Negativas: " + getAppDetailsObj.getNegativeReview());
+                    edPriceInitialPrice.setText("Preço Inicial em US$: " + algoritmoDoCaralho(getAppDetailsObj.getInitialPrice()) + " / Preço Atual em US$: " + algoritmoDoCaralho(getAppDetailsObj.getPrice()) + " / Desconto: " + getAppDetailsObj.getDiscount());
+                    edLanguages.setText("Línguas: " + getAppDetailsObj.getLanguages());
+                    edGenre.setText("Gênero: " + getAppDetailsObj.getGenre());
 
-                Call<GetNumberOfConcurrentPlayers> getNumberOfConcurrentPlayersCall = steamAPIService.getCCU("F8FC0E4F7BA600F9FCEC8D77F5801D83", getAppDetailsObj.getAppid()+"");
-                getNumberOfConcurrentPlayersCall.enqueue(new Callback<GetNumberOfConcurrentPlayers>() {
-                    @Override
-                    public void onResponse(Call<GetNumberOfConcurrentPlayers> call, Response<GetNumberOfConcurrentPlayers> response) {
-                        GetNumberOfConcurrentPlayers getNumberOfConcurrentPlayers = response.body();
-                        edCCUYesterdayToday.setText("Ontem: " + getAppDetailsObj.getConcurrentUsers() + " / Agora: " + getNumberOfConcurrentPlayers.getResponse().getPlayer_count());
-                    }
+                    Call<GetNumberOfConcurrentPlayers> getNumberOfConcurrentPlayersCall = steamAPIService.getCCU("F8FC0E4F7BA600F9FCEC8D77F5801D83", getAppDetailsObj.getAppid()+"");
+                    getNumberOfConcurrentPlayersCall.enqueue(new Callback<GetNumberOfConcurrentPlayers>() {
+                        @Override
+                        public void onResponse(Call<GetNumberOfConcurrentPlayers> call, Response<GetNumberOfConcurrentPlayers> response) {
+                            GetNumberOfConcurrentPlayers getNumberOfConcurrentPlayers = response.body();
+                            edCCUYesterdayToday.setText("Ontem: " + getAppDetailsObj.getConcurrentUsers() + " / Agora: " + getNumberOfConcurrentPlayers.getResponse().getPlayer_count());
 
-                    @Override
-                    public void onFailure(Call<GetNumberOfConcurrentPlayers> call, Throwable t) {
+                        }
 
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<GetNumberOfConcurrentPlayers> call, Throwable t) {
+                            Log.e("Failure:",t.getMessage());
+                        }
+                    });
+                }
             }
 
             @Override
             public void onFailure(Call<GetAppDetailsRequest> call, Throwable t) {
-
+                Log.e("Failure:",t.getMessage());
             }
         });
 
@@ -77,6 +87,8 @@ public class Jogo extends AppCompatActivity {
 
 
     private void inicializarComponentes() {
+
+        this.actionBar = getSupportActionBar();
         this.edNome = findViewById(R.id.txt_nome);
         this.edAppid = findViewById(R.id.txt_appid);
         this.edDeveloperPublisher = findViewById(R.id.txt_developer_publisher);

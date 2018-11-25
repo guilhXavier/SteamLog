@@ -124,6 +124,9 @@ public class Usuario implements Serializable {
 	public void setListrankings(ArrayList<Ranking> listrankings) {
 		this.listrankings = listrankings;
 	}
-	
 
+	@Override
+	public String toString() {
+		return numJogos +"| "+ nickname ;
+	}
 }

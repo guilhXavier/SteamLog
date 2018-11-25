@@ -1,5 +1,7 @@
 package c.gg.steamlog.Services;
 
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 import c.gg.steamlog.Model.*;
@@ -30,6 +32,10 @@ public interface SteamLogService {
     @GET("usuario/{nickname}/{senha}")
     Call<Usuario> buscarPorLoginESenha(@Query("nickname") String nickname,@Query("senha") String senha);
     //fim dos metodos do usuario
+
+    @GET("usuario/ranking")
+    Call<ArrayList<Usuario>>buscarRanking();
+
 
     //inicio dos metodos das imagens
     @POST("imagens/")

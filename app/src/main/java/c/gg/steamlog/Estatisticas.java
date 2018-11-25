@@ -2,7 +2,11 @@ package c.gg.steamlog;
 
 import android.content.Intent;
 import android.os.Bundle;;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.*;
@@ -14,18 +18,19 @@ import static c.gg.steamlog.Services.SteamSpyService.BASE_URL_STEAM_SPY;
 
 public class Estatisticas extends AppCompatActivity{
 
+    private ActionBar actionBar;
+
     private Button btPesquisar;
     private EditText edtxtAppid;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_estatisticas);
-        inicializarComponentes();
+        this.inicializarComponentes();
+        this.actionBar.setTitle("Estatísticas");
 
-        btPesquisar.setOnClickListener(new View.OnClickListener() {
+        this.btPesquisar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(edtxtAppid.getText()!=null){
@@ -44,6 +49,10 @@ public class Estatisticas extends AppCompatActivity{
 
         this.btPesquisar = findViewById(R.id.bt_pesquisar);
         this.edtxtAppid = findViewById(R.id.ed_appid);
+        this.actionBar = getSupportActionBar();
+
+
+
     }
 
 
