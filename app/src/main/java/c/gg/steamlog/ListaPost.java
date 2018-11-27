@@ -7,8 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Switch;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +43,7 @@ public class ListaPost extends AppCompatActivity {
         this.incrementarComponentes();
         this.actionBar.setTitle("ListaPost");
         usuario = (Usuario) getIntent().getSerializableExtra("usuario");
+        Toast.makeText(ListaPost.this,usuario.getNickname(),Toast.LENGTH_SHORT).show();
 
         SteamLogService service = retrofitServer.create(SteamLogService.class);
         Call<ArrayList<Postagem>> todasPostagens = service.listaTodasPostagens();
@@ -52,6 +56,14 @@ public class ListaPost extends AppCompatActivity {
                     listPostagens = response.body();
                     ArrayAdapter<Postagem> adapter = new ArrayAdapter<Postagem>(ListaPost.this,android.R.layout.simple_list_item_1,listPostagens);
                     lvPost.setAdapter(adapter);
+                    lvPost.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                            Intent intent  = new Intent(ListaPost.this,VerPost.class);
+                            intent.putExtra("postagem",listPostagens.get(position));
+                            startActivity(intent);
+                        }
+                    });
                 }
             }
 
@@ -61,16 +73,14 @@ public class ListaPost extends AppCompatActivity {
             }
         });
 
-
-
-//            this.flButoon.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Intent intent = new Intent(ListaPost.this,FazerPost.class);
-//                    intent.putExtra("usuario",usuario);
-//                    startActivity(intent);
-//                }
-//            });
+            this.flButoon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(ListaPost.this,FazerPost.class);
+                    intent.putExtra("usuario",usuario);
+                    startActivity(intent);
+                }
+            });
 
     }
 

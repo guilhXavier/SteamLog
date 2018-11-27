@@ -1,9 +1,10 @@
 package c.gg.steamlog.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.sql.Date;
 
-public class Postagem {
+public class Postagem implements Serializable {
 
 	private long idPostagem;
 	private String tituloPostagem;

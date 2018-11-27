@@ -28,7 +28,9 @@
         <activity android:name=".Jogo" />
         <activity android:name=".Ranking" />
         <activity android:name=".ListaPost" />
-        <activity android:name=".Amigos"></activity>
+        <activity android:name=".Amigos" />
+        <activity android:name=".FazerPost" />
+        <activity android:name=".VerPost"></activity>
     </application>
 
 </manifest>
