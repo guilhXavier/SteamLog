@@ -5,6 +5,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +28,7 @@ public class Jogo extends AppCompatActivity {
 
     private ActionBar actionBar;
     private TextView edNome, edAppid, edDeveloperPublisher, edPositiveNegativeUserScore, edPriceInitialPrice, edLanguages, edGenre, edCCUYesterdayToday;
+    private ProgressBar progressBarJogo;
     private Retrofit retrofitSteamSpy, retrofitSteamAPI;
 
     @Override
@@ -39,13 +42,14 @@ public class Jogo extends AppCompatActivity {
         SteamSpyService steamSpyService = retrofitSteamSpy.create(SteamSpyService.class);
         final SteamAPIService steamAPIService = retrofitSteamAPI.create(SteamAPIService.class);
 
-        final Call<GetAppDetailsRequest> getAppDetailsCall = steamSpyService.getAppDetails("appdetails", meuIntent.getLongExtra("appid", 730));
+        final Call<GetAppDetailsRequest> getAppDetailsCall = steamSpyService.getAppDetails("appdetails", meuIntent.getLongExtra("appid",730));
         getAppDetailsCall.enqueue(new Callback<GetAppDetailsRequest>() {
             @Override
             public void onResponse(Call<GetAppDetailsRequest> call, Response<GetAppDetailsRequest> response) {
                 if(!response.isSuccessful()){
                     Log.e("ResponseErro:","Erro:"+response.code());
                 } else {
+                    setVisibiity();
                     final GetAppDetailsRequest getAppDetailsObj = response.body();
                     edNome.setText(getAppDetailsObj.getName());
                     edAppid.setText(getAppDetailsObj.getAppid()+"");
@@ -97,6 +101,7 @@ public class Jogo extends AppCompatActivity {
         this.edPriceInitialPrice = findViewById(R.id.txt_price_initial_price);
         this.edLanguages = findViewById(R.id.txt_languages);
         this.edGenre = findViewById(R.id.txt_genre);
+        this.progressBarJogo = findViewById(R.id.progressbar_jogo);
         this.retrofitSteamSpy = new Retrofit.Builder()
                 .baseUrl(BASE_URL_STEAM_SPY)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -106,5 +111,15 @@ public class Jogo extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
-
+    private void setVisibiity(){
+        this.edNome.setVisibility(View.VISIBLE);
+        this.edAppid.setVisibility(View.VISIBLE);
+        this.edDeveloperPublisher.setVisibility(View.VISIBLE);
+        this.edPositiveNegativeUserScore.setVisibility(View.VISIBLE);
+        this.edCCUYesterdayToday.setVisibility(View.VISIBLE);
+        this.edPriceInitialPrice.setVisibility(View.VISIBLE);
+        this.edLanguages.setVisibility(View.VISIBLE);;
+        this.edGenre.setVisibility(View.VISIBLE);
+        this.progressBarJogo.setVisibility(View.INVISIBLE);
+    }
 }

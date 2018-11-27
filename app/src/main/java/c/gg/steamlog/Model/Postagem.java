@@ -4,25 +4,37 @@ import java.util.ArrayList;
 import java.sql.Date;
 
 public class Postagem {
-	
+
 	private long idPostagem;
+	private String tituloPostagem;
 	private String descPostagem;
 	private Date dataPostagem;
 	private ArrayList<ImagemPostagem>listImagens;
 	private ArrayList<Comentarios>listComentarios;
 	private ArrayList<Post>listPost;
-	
+
 	public Postagem() {}
 
-	public Postagem(long idPostagem, String descPostagem, Date dataPostagem, ArrayList<ImagemPostagem> listImagens,
-			ArrayList<Comentarios> listComentarios, ArrayList<Post> listPost) {
+	public Postagem(long idPostagem,String tituloPostagem, String descPostagem, Date dataPostagem, ArrayList<ImagemPostagem> listImagens,
+					ArrayList<Comentarios> listComentarios, ArrayList<Post> listPost) {
 		super();
+		this.tituloPostagem = tituloPostagem;
 		this.idPostagem = idPostagem;
 		this.descPostagem = descPostagem;
 		this.dataPostagem = dataPostagem;
 		this.listImagens = listImagens;
 		this.listComentarios = listComentarios;
 		this.listPost = listPost;
+	}
+
+
+
+	public String getTituloPostagem() {
+		return tituloPostagem;
+	}
+
+	public void setTituloPostagem(String tituloPostagem) {
+		this.tituloPostagem = tituloPostagem;
 	}
 
 	public long getIdPostagem() {
@@ -72,8 +84,10 @@ public class Postagem {
 	public void setListPost(ArrayList<Post> listPost) {
 		this.listPost = listPost;
 	}
-	
-	
 
+	@Override
+	public String toString() {
+		return tituloPostagem;
+	}
 }
 

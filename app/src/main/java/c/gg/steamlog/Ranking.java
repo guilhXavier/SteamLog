@@ -30,9 +30,6 @@ import static c.gg.steamlog.Services.SteamLogService.BASE_URL_SERVER;
 public class Ranking extends AppCompatActivity {
 
     private ActionBar actionBar;
-    private DrawerLayout drawerLayout;
-    private ActionBarDrawerToggle toggleButton;
-    private NavigationView navigationView;
     private ListView lvRanking;
     private ArrayList<Usuario>listUsuario;
     private Retrofit retrofitServer;
@@ -44,29 +41,6 @@ public class Ranking extends AppCompatActivity {
         setContentView(R.layout.activity_ranking);
         this.inicializarComponentes();
         this.actionBar.setTitle("Ranking");
-        this.drawerLayout.addDrawerListener(this.toggleButton);
-        this.toggleButton.syncState();
-        this.actionBar.setDisplayHomeAsUpEnabled(true);
-
-        this.navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Intent intent;
-                switch (item.getItemId()) {
-
-                    case R.id.nav_estatisticas:
-                        intent = new Intent(Ranking.this, Estatisticas.class);
-                        startActivity(intent);
-                        break;
-                    case R.id.nav_perfil:
-                        intent = new Intent(Ranking.this, Perfil.class);
-                        startActivity(intent);
-                        break;
-                }
-                return false;
-            }
-
-        });
 
 
         SteamLogService service = retrofitServer.create(SteamLogService.class);
@@ -99,17 +73,6 @@ public class Ranking extends AppCompatActivity {
                 .baseUrl(BASE_URL_SERVER)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        this.drawerLayout = findViewById(R.id.drawerlayout_ranking);
-        this.toggleButton = new ActionBarDrawerToggle(this,this.drawerLayout,R.string.open,R.string.close);
-        this.navigationView = findViewById(R.id.nv_layout_ranking);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        if(this.toggleButton.onOptionsItemSelected(item)){
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }

@@ -51,5 +51,10 @@ public interface SteamLogService {
     Call<Imagens> buscarImagemPorId(@Query("idImagem") long id);
     //fim dos metodos das imagens
 
+    //inicio dos metdos post;
+
+    @GET("postagens/")
+
+    Call<ArrayList<Postagem>> listaTodasPostagens();
 
 }

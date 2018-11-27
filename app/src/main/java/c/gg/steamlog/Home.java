@@ -73,6 +73,7 @@ public class Home extends AppCompatActivity {
                                                 }else {
                                                     Intent intent = new Intent(Home.this,Perfil.class);
                                                     intent.putExtra("usuario",usuario);
+                                                    intent.putExtra("cadastro/login",false);
                                                     startActivity(intent);
                                                 }
                                             }

@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,18 +36,18 @@ public class Perfil extends AppCompatActivity {
         this.inicializarComponentes();
 
         usuario = (Usuario) getIntent().getSerializableExtra("usuario");
+        boolean cadastroLogin = getIntent().getBooleanExtra("cadastro/login",false);
         this.actionBar.setTitle(R.string.perfil);
         this.drawerLayoutPerfil.addDrawerListener(this.toggle);
         this.toggle.syncState();
         this.actionBar.setDisplayHomeAsUpEnabled(true);
-
-//        Toast.makeText(this,usuario.getImagens().getArquivoImagem(),Toast.LENGTH_SHORT).show();
-//        Uri fotoPerfil = Uri.parse(usuario.getImagens().getArquivoImagem());
-//        this.imvFotoPerfil.setImageURI(fotoPerfil);
+        if(cadastroLogin){
+         Uri fotoPerfil = Uri.parse(usuario.getImagens().getArquivoImagem());
+         this.imvFotoPerfil.setImageURI(fotoPerfil);
+        }
         this.tvBemVindo.setText("Bem Vindo,"+usuario.getNickname());
         this.tvEmail.setText("Email:"+usuario.getEmail());
         this.tvNumeroJogos.setText("Numero de jogos:"+usuario.getNumJogos());
-        this.tvNumeroConquistas.setText("Numero de Conquistas:"+usuario.getNumConquistas());
         this.tvSteamid.setText("SteamID:"+usuario.getSteamid());
 
         this.navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -63,6 +64,10 @@ public class Perfil extends AppCompatActivity {
                         intent = new Intent(Perfil.this,Ranking.class);
                         startActivity(intent);
                         break;
+                    case R.id.nav_post:
+                        intent = new Intent(Perfil.this, ListaPost.class);
+                        intent.putExtra("usuario",usuario);
+                        startActivity(intent);
                 }
 
                 return false;
@@ -81,7 +86,7 @@ public class Perfil extends AppCompatActivity {
         this.tvBemVindo = findViewById(R.id.tv_bemvindo_perfil);
         this.tvEmail = findViewById(R.id.tv_email);
         this.tvNumeroJogos = findViewById(R.id.tv_numerojogos_perfil);
-        this.tvNumeroConquistas = findViewById(R.id.tv_numeroconquistas_perfil);
+//        this.tvNumeroConquistas = findViewById(R.id.tv_numeroconquistas_perfil);
         this.tvSteamid = findViewById(R.id.tv_steamid_perfil);
     }
 

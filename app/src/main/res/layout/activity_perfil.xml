@@ -56,24 +56,12 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/tv_numeroconquistas_perfil"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="199dp"
-            android:background="@color/BackGourndTextViewsColor"
-            android:text="@string/numero_de_conquistas"
-            android:textColor="@color/SecondTextColor"
-            android:textSize="18sp" />
-
-        <TextView
             android:id="@+id/tv_steamid_perfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/tv_numeroconquistas_perfil"
-            android:layout_marginTop="-199dp"
+            android:layout_below="@+id/tv_numerojogos_perfil"
+            android:layout_marginTop="-230dp"
             android:background="@color/BackGourndTextViewsColor"
             android:text="@string/steamid2"
             android:textColor="@color/SecondTextColor"

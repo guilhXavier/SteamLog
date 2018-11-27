@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Home"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
         <activity android:name=".Cadastro" />
         <activity android:name=".Perfil" />
         <activity android:name=".Estatisticas" />
@@ -25,8 +25,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Jogo"></activity>
-        <activity android:name=".Ranking"></activity>
+        <activity android:name=".Jogo" />
+        <activity android:name=".Ranking" />
+        <activity android:name=".ListaPost"></activity>
     </application>
 
 </manifest>

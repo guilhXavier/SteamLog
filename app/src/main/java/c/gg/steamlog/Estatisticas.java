@@ -35,7 +35,7 @@ public class Estatisticas extends AppCompatActivity{
             public void onClick(View view) {
                 if(edtxtAppid.getText()!=null){
                     Intent myIntent = new Intent(Estatisticas.this, Jogo.class);
-                    myIntent.putExtra("appid", edtxtAppid.getText().toString());
+                    myIntent.putExtra("appid", Long.parseLong(edtxtAppid.getText().toString()));
                     startActivity(myIntent);
                 }else{
                     Toast.makeText(Estatisticas.this,"Insira o appid, mi amigo",Toast.LENGTH_SHORT).show();

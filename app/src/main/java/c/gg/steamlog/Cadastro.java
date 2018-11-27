@@ -84,6 +84,7 @@ public class Cadastro extends AppCompatActivity {
                                 Log.e("SteamResponseFailure:","Erro:"+response.code());
                             } else{
                                 GetOwnedGames games = response.body();
+                                Log.e("Numero:",games.getResponse().getGame_Count());
                                 usuario.setNumJogos(Integer.parseInt(games.getResponse().getGame_Count()));
                                 Call<Imagens> cadastrar = service.inserirImagem(imagens);
                                 cadastrar.enqueue(new Callback<Imagens>() {
@@ -106,6 +107,7 @@ public class Cadastro extends AppCompatActivity {
                                                         Toast.makeText(Cadastro.this,"FAZER INTEGRADOR É FACÍL",Toast.LENGTH_SHORT).show();
                                                         Intent intent = new Intent(Cadastro.this,Perfil.class);
                                                         intent.putExtra("usuario",usuario);
+                                                        intent.putExtra("cadastro/login",true);
                                                         startActivity(intent);
                                                     }
                                                 }
