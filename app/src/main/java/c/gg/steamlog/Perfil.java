@@ -68,6 +68,10 @@ public class Perfil extends AppCompatActivity {
                         intent = new Intent(Perfil.this, ListaPost.class);
                         intent.putExtra("usuario",usuario);
                         startActivity(intent);
+                    case R.id.nav_amigos:
+                        intent = new Intent(Perfil.this, Amigos.class);
+                        intent.putExtra("usuario", usuario);
+                        startActivity(intent);
                 }
 
                 return false;
