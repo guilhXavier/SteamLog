@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,7 +30,7 @@ public class Jogo extends AppCompatActivity {
     private ActionBar actionBar;
     private TextView edNome, edAppid, edDeveloperPublisher, edPositiveNegativeUserScore, edPriceInitialPrice, edLanguages, edGenre, edCCUYesterdayToday;
     private ProgressBar progressBarJogo;
-    private Retrofit retrofitSteamSpy, retrofitSteamAPI;
+    private Retrofit retrofitSteamSpy, retrofitSteamAPI, retrofitServer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +66,6 @@ public class Jogo extends AppCompatActivity {
                         public void onResponse(Call<GetNumberOfConcurrentPlayers> call, Response<GetNumberOfConcurrentPlayers> response) {
                             GetNumberOfConcurrentPlayers getNumberOfConcurrentPlayers = response.body();
                             edCCUYesterdayToday.setText("Ontem: " + getAppDetailsObj.getConcurrentUsers() + " / Agora: " + getNumberOfConcurrentPlayers.getResponse().getPlayer_count());
-
                         }
 
                         @Override
@@ -110,6 +110,7 @@ public class Jogo extends AppCompatActivity {
                 .baseUrl(BASE_URL_STEAM_API)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+
     }
     private void setVisibiity(){
         this.edNome.setVisibility(View.VISIBLE);

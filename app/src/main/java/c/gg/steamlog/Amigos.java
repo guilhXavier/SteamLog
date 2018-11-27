@@ -3,9 +3,11 @@ package c.gg.steamlog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import c.gg.steamlog.Model.Usuario;
@@ -29,7 +31,7 @@ public class Amigos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_amigos);
-        inicializarComponentes();
+        this.inicializarComponentes();
 
         Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL_STEAM_API).addConverterFactory(GsonConverterFactory.create()).build();
 
@@ -43,16 +45,18 @@ public class Amigos extends AppCompatActivity {
             @Override
             public void onResponse(Call<GetFriendList> call, Response<GetFriendList> response) {
                 GetFriendList getFriendList = response.body();
+                nomes = new ArrayList<>();
                 for(int x = 0; x < getFriendList.getFriendslist().getFriends().size(); x++){
                     Call<GetPlayerSummaries> getPlayerSummariesCall = service.summary("F8FC0E4F7BA600F9FCEC8D77F5801D83", getFriendList.getFriendslist().getFriends().get(x).getSteamid());
                     getPlayerSummariesCall.enqueue(new Callback<GetPlayerSummaries>() {
                         @Override
                         public void onResponse(Call<GetPlayerSummaries> call, Response<GetPlayerSummaries> response) {
+
                             GetPlayerSummaries getPlayerSummaries = response.body();
-                            System.out.println(getPlayerSummaries.getResponse().getPlayers().get(0).getPersonaname());
                             nomes.add(getPlayerSummaries.getResponse().getPlayers().get(0).getPersonaname());
                             ArrayAdapter<String> adapter = new ArrayAdapter<String>(Amigos.this, android.R.layout.simple_list_item_1, nomes);
                             lvAmigos.setAdapter(adapter);
+
                         }
 
 
