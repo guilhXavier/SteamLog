@@ -73,9 +73,7 @@ public class Perfil extends AppCompatActivity {
                         intent = new Intent(Perfil.this, Amigos.class);
                         intent.putExtra("usuario", usuario);
                         startActivity(intent);
-                    case R.id.nav_favoritos:
-                        intent = new Intent(Perfil.this, ListaFavoritos.class);
-                        startActivity(intent);
+                        break;
                 }
 
                 return false;

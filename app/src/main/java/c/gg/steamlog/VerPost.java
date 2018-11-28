@@ -35,7 +35,6 @@ public class VerPost extends AppCompatActivity {
         setContentView(R.layout.activity_ver_post);
         this.incrementarComponentes();
         postagem = (Postagem) getIntent().getSerializableExtra("postagem");
-        Toast.makeText(this,""+postagem.getIdPostagem(),Toast.LENGTH_LONG).show();
         actionBar.setTitle("Post");
 
         SteamLogService service = retrofitServer.create(SteamLogService.class);

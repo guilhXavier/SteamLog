@@ -43,7 +43,6 @@ public class ListaPost extends AppCompatActivity {
         this.incrementarComponentes();
         this.actionBar.setTitle("ListaPost");
         usuario = (Usuario) getIntent().getSerializableExtra("usuario");
-        Toast.makeText(ListaPost.this,usuario.getNickname(),Toast.LENGTH_SHORT).show();
 
         SteamLogService service = retrofitServer.create(SteamLogService.class);
         Call<ArrayList<Postagem>> todasPostagens = service.listaTodasPostagens();

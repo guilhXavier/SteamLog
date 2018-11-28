@@ -38,7 +38,6 @@ public class FazerPost extends AppCompatActivity {
         setContentView(R.layout.activity_fazer_post);
         this.incrementarComponentes();
         usuario =(Usuario) getIntent().getSerializableExtra("usuario");
-        Toast.makeText(FazerPost.this,usuario.getNickname(),Toast.LENGTH_SHORT).show();
         this.actionBar.setTitle("FazerPost");
         this.btPost.setOnClickListener(new View.OnClickListener() {
             @Override

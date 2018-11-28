@@ -93,7 +93,6 @@ public class Cadastro extends AppCompatActivity {
                                         if(!response.isSuccessful()){
                                             Log.e("ImagemResponseError:","Erro:"+response.code());
                                         }else{
-                                            Toast.makeText(Cadastro.this,"Imagem Foi",Toast.LENGTH_SHORT).show();
                                             imagens = response.body();
                                             usuario.setImagens(imagens);
                                             Call<Usuario> cadastrar = service.cadastraUsuario(usuario);
@@ -104,7 +103,6 @@ public class Cadastro extends AppCompatActivity {
                                                         Log.e("UsuarioResponseError:", "Erro:" + response.code());
                                                     } else {
                                                         usuario = response.body();
-                                                        Toast.makeText(Cadastro.this,"FAZER INTEGRADOR É FACÍL",Toast.LENGTH_SHORT).show();
                                                         Intent intent = new Intent(Cadastro.this,Perfil.class);
                                                         intent.putExtra("usuario",usuario);
                                                         intent.putExtra("cadastro/login",true);
