@@ -10,10 +10,8 @@ import retrofit2.http.*;
 
 public interface SteamLogService {
 
-    //url base
     public final String BASE_URL_SERVER = "http://localhost:8080/";
 
-    //inicio dos metodos Usuario
     @POST("usuario/")
     Call<Usuario> cadastraUsuario(@Body Usuario usuario);
 
@@ -31,13 +29,11 @@ public interface SteamLogService {
 
     @GET("usuario/{nickname}/{senha}")
     Call<Usuario> buscarPorLoginESenha(@Query("nickname") String nickname,@Query("senha") String senha);
-    //fim dos metodos do usuario
 
     @GET("usuario/ranking")
     Call<ArrayList<Usuario>>buscarRanking();
 
 
-    //inicio dos metodos das imagens
     @POST("imagens/")
     Call<Imagens> inserirImagem(@Body Imagens imagens);
 
@@ -49,9 +45,7 @@ public interface SteamLogService {
 
     @GET("imagens/")
     Call<Imagens> buscarImagemPorId(@Query("idImagem") long id);
-    //fim dos metodos das imagens
 
-    //inicio dos metdos postagem;
 
     @GET("postagens/")
     Call<ArrayList<Postagem>> listaTodasPostagens();

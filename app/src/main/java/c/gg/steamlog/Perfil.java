@@ -25,7 +25,7 @@ public class Perfil extends AppCompatActivity {
     private NavigationView navigationView;
     private ActionBar actionBar;
     private ImageView imvFotoPerfil;
-    private TextView tvBemVindo,tvEmail,tvNumeroJogos,tvNumeroConquistas,tvSteamid;
+    private TextView tvBemVindo,tvEmail,tvNumeroJogos, tvSteamid;
     private Usuario usuario;
 
 
@@ -73,6 +73,9 @@ public class Perfil extends AppCompatActivity {
                         intent = new Intent(Perfil.this, Amigos.class);
                         intent.putExtra("usuario", usuario);
                         startActivity(intent);
+                    case R.id.nav_favoritos:
+                        intent = new Intent(Perfil.this, ListaFavoritos.class);
+                        startActivity(intent);
                 }
 
                 return false;
@@ -91,7 +94,6 @@ public class Perfil extends AppCompatActivity {
         this.tvBemVindo = findViewById(R.id.tv_bemvindo_perfil);
         this.tvEmail = findViewById(R.id.tv_email);
         this.tvNumeroJogos = findViewById(R.id.tv_numerojogos_perfil);
-//        this.tvNumeroConquistas = findViewById(R.id.tv_numeroconquistas_perfil);
         this.tvSteamid = findViewById(R.id.tv_steamid_perfil);
     }
 

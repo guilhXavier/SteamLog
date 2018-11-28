@@ -1,5 +1,5 @@
 package c.gg.steamlog.ModelSteam;
-//STEAM API
+
 public class GetOwnedGames
 {
     private Response response;
