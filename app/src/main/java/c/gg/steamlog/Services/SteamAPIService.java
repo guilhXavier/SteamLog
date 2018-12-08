@@ -24,6 +24,9 @@ public interface SteamAPIService {
     @GET("ISteamUser/GetPlayerSummaries/v0002/")
     Call<GetPlayerSummaries> summary(@Query("key") String chave, @Query("steamids") String id);
 
+    @GET("ISteamApps/GetAppList/v2/")
+
+
 
 
 }
