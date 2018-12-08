@@ -1,5 +1,7 @@
 package c.gg.steamlog.ModelSteam;
 
+import java.util.List;
+
 public class Applist {
 
     private List<Apps> apps;
