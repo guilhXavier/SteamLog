@@ -1,17 +1,18 @@
 package c.gg.steamlog.ModelSteam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Applist {
 
-    private List<Apps> apps;
+    private ArrayList<Apps> apps;
 
     public List<Apps> getApps ()
     {
         return apps;
     }
 
-    public void setApps (List<Apps> apps)
+    public void setApps (ArrayList<Apps> apps)
     {
         this.apps = apps;
     }

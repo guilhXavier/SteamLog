@@ -56,7 +56,12 @@ public class Jogo extends AppCompatActivity {
                     edAppid.setText(getAppDetailsObj.getAppid()+"");
                     edDeveloperPublisher.setText("Desenvolvedora: "+ getAppDetailsObj.getDeveloper() + " / Publisher: " + getAppDetailsObj.getPublisher());
                     edPositiveNegativeUserScore.setText("Pontuação dos Usuários: " + getAppDetailsObj.getUserscore() + " / Reviews Positivas: " + getAppDetailsObj.getPositiveReview() + " / Reviews Negativas: " + getAppDetailsObj.getNegativeReview());
-                    edPriceInitialPrice.setText("Preço Inicial em US$: " + algoritmoDoCaralho(getAppDetailsObj.getInitialPrice()) + " / Preço Atual em US$: " + algoritmoDoCaralho(getAppDetailsObj.getPrice()) + " / Desconto: " + getAppDetailsObj.getDiscount());
+                    if(!getAppDetailsObj.getInitialPrice().equals("0") && !getAppDetailsObj.getPrice().equals("0")){
+                        edPriceInitialPrice.setText("Preço Inicial em US$: " + algoritmoDoCaralho(getAppDetailsObj.getInitialPrice()) + " / Preço Atual em US$: " + algoritmoDoCaralho(getAppDetailsObj.getPrice()) + " / Desconto: " + getAppDetailsObj.getDiscount());
+                    }else{
+                        edPriceInitialPrice.setText("Preço Inicial em US$: GRATIS / Preço Atual em US$: GRATIS / Desconto: " + getAppDetailsObj.getDiscount() + "%");
+
+                    }
                     edLanguages.setText("Línguas: " + getAppDetailsObj.getLanguages());
                     edGenre.setText("Gênero: " + getAppDetailsObj.getGenre());
 
