@@ -1,5 +1,6 @@
 package c.gg.steamlog.Services;
 
+import c.gg.steamlog.ModelSteam.GetAppList;
 import c.gg.steamlog.ModelSteam.GetFriendList;
 import c.gg.steamlog.ModelSteam.GetNumberOfConcurrentPlayers;
 import c.gg.steamlog.ModelSteam.GetOwnedGames;
@@ -23,6 +24,10 @@ public interface SteamAPIService {
 
     @GET("ISteamUser/GetPlayerSummaries/v0002/")
     Call<GetPlayerSummaries> summary(@Query("key") String chave, @Query("steamids") String id);
+
+    @GET("ISteamApps/GetAppList/v2/")
+    Call<GetAppList> appList();
+
 
 
 
