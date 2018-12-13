@@ -8,7 +8,8 @@
     <color name="ToolbarButtonsColor">#200051</color>
     <color name="StatusbarColor">#8190a5</color>
     <color name="NavigatioDrawerMenuColor">#3a217e</color>
-    <color name="SecondTextColor">#8492a6</color>
+    <color name="SecondTextColor">#ffffff</color>
+    <color name="HintColor">#8492a6</color>
     <color name="BackGourndTextViewsColor">#081c54</color>
 
 </resources>

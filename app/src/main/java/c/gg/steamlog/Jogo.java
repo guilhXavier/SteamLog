@@ -28,8 +28,8 @@ import static c.gg.steamlog.Services.SteamSpyService.BASE_URL_STEAM_SPY;
 public class Jogo extends AppCompatActivity {
 
     private ActionBar actionBar;
-    private TextView edNome, edAppid, edDeveloperPublisher, edPositiveNegativeUserScore, edPriceInitialPrice, edLanguages, edGenre, edCCUYesterdayToday;
-    private ProgressBar progressBarJogo;
+    private TextView edNome, edAppid, edDeveloper, edPublisher, edPositiveReviews, edNegativeReviews, edUserScore, edPrice, edInitialPrice, edDiscount, edLanguages, edGenre, edCCUYesterday, edCCUToday;
+//    private ProgressBar progressBarJogo;
     private Retrofit retrofitSteamSpy, retrofitSteamAPI, retrofitServer;
 
     @Override
@@ -50,17 +50,23 @@ public class Jogo extends AppCompatActivity {
                 if(!response.isSuccessful()){
                     Log.e("ResponseErro:","Erro:"+response.code());
                 } else {
-                    setVisibiity();
+//                    setVisibiity();
                     final GetAppDetailsRequest getAppDetailsObj = response.body();
                     edNome.setText(getAppDetailsObj.getName());
                     edAppid.setText(getAppDetailsObj.getAppid()+"");
-                    edDeveloperPublisher.setText("Desenvolvedora: "+ getAppDetailsObj.getDeveloper() + " / Publisher: " + getAppDetailsObj.getPublisher());
-                    edPositiveNegativeUserScore.setText("Pontuação dos Usuários: " + getAppDetailsObj.getUserscore() + " / Reviews Positivas: " + getAppDetailsObj.getPositiveReview() + " / Reviews Negativas: " + getAppDetailsObj.getNegativeReview());
+                    edDeveloper.setText("Desenvolvedora: "+ getAppDetailsObj.getDeveloper());
+                    edPublisher.setText("Publisher: " + getAppDetailsObj.getPublisher());
+                    edUserScore.setText("Pontuação dos Usuários: " + getAppDetailsObj.getUserscore()+"%");
+                    edPositiveReviews.setText("Reviews Positivas: " + getAppDetailsObj.getPositiveReview());
+                    edNegativeReviews.setText("Reviews Negativas: " + getAppDetailsObj.getNegativeReview());
                     if(!getAppDetailsObj.getInitialPrice().equals("0") && !getAppDetailsObj.getPrice().equals("0")){
-                        edPriceInitialPrice.setText("Preço Inicial em US$: " + algoritmoDoCaralho(getAppDetailsObj.getInitialPrice()) + " / Preço Atual em US$: " + algoritmoDoCaralho(getAppDetailsObj.getPrice()) + " / Desconto: " + getAppDetailsObj.getDiscount());
+                        edInitialPrice.setText("Preço Inicial em US$: " + algoritmoDoCaralho(getAppDetailsObj.getInitialPrice()));
+                        edPrice.setText("Preço Atual em US$: " + algoritmoDoCaralho(getAppDetailsObj.getPrice()));
+                        edDiscount.setText("Desconto: " + getAppDetailsObj.getDiscount()+"%");
                     }else{
-                        edPriceInitialPrice.setText("Preço Inicial em US$: GRATIS / Preço Atual em US$: GRATIS / Desconto: " + getAppDetailsObj.getDiscount() + "%");
-
+                        edInitialPrice.setText("Preço Inicial em US$: FREE");
+                        edPrice.setText("\nPreço Atual em US$: FREE");
+                        edDiscount.setText("\nDesconto: " + getAppDetailsObj.getDiscount() + "%");
                     }
                     edLanguages.setText("Línguas: " + getAppDetailsObj.getLanguages());
                     edGenre.setText("Gênero: " + getAppDetailsObj.getGenre());
@@ -70,7 +76,8 @@ public class Jogo extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<GetNumberOfConcurrentPlayers> call, Response<GetNumberOfConcurrentPlayers> response) {
                             GetNumberOfConcurrentPlayers getNumberOfConcurrentPlayers = response.body();
-                            edCCUYesterdayToday.setText("Ontem: " + getAppDetailsObj.getConcurrentUsers() + " / Agora: " + getNumberOfConcurrentPlayers.getResponse().getPlayer_count());
+                            edCCUYesterday.setText("Pico ontem: " + getAppDetailsObj.getConcurrentUsers());
+                            edCCUToday.setText("Usuarios agora: " + getNumberOfConcurrentPlayers.getResponse().getPlayer_count());
                         }
 
                         @Override
@@ -100,13 +107,19 @@ public class Jogo extends AppCompatActivity {
         this.actionBar = getSupportActionBar();
         this.edNome = findViewById(R.id.txt_nome);
         this.edAppid = findViewById(R.id.txt_appid);
-        this.edDeveloperPublisher = findViewById(R.id.txt_developer_publisher);
-        this.edPositiveNegativeUserScore = findViewById(R.id.txt_positive_negative_userscore);
-        this.edCCUYesterdayToday = findViewById(R.id.txt_CCU_yesterday_today);
-        this.edPriceInitialPrice = findViewById(R.id.txt_price_initial_price);
+        this.edDeveloper = findViewById(R.id.txt_developer);
+        this.edPublisher = findViewById(R.id.txt_publisher);
+        this.edPositiveReviews = findViewById(R.id.txt_positive);
+        this.edNegativeReviews = findViewById(R.id.txt_negative);
+        this.edUserScore = findViewById(R.id.txt_userscore);
+        this.edCCUYesterday = findViewById(R.id.txt_CCU_yesterday);
+        this.edCCUToday = findViewById(R.id.txt_CCU_today);
+        this.edInitialPrice = findViewById(R.id.txt_initial_price);
+        this.edPrice = findViewById(R.id.txt_price);
+        this.edDiscount = findViewById(R.id.txt_discount);
         this.edLanguages = findViewById(R.id.txt_languages);
         this.edGenre = findViewById(R.id.txt_genre);
-        this.progressBarJogo = findViewById(R.id.progressbar_jogo);
+//        this.progressBarJogo = findViewById(R.id.progressbar_jogo);
         this.retrofitSteamSpy = new Retrofit.Builder()
                 .baseUrl(BASE_URL_STEAM_SPY)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -117,15 +130,16 @@ public class Jogo extends AppCompatActivity {
                 .build();
 
     }
-    private void setVisibiity(){
-        this.edNome.setVisibility(View.VISIBLE);
-        this.edAppid.setVisibility(View.VISIBLE);
-        this.edDeveloperPublisher.setVisibility(View.VISIBLE);
-        this.edPositiveNegativeUserScore.setVisibility(View.VISIBLE);
-        this.edCCUYesterdayToday.setVisibility(View.VISIBLE);
-        this.edPriceInitialPrice.setVisibility(View.VISIBLE);
-        this.edLanguages.setVisibility(View.VISIBLE);;
-        this.edGenre.setVisibility(View.VISIBLE);
-        this.progressBarJogo.setVisibility(View.INVISIBLE);
-    }
+//    private void setVisibiity(){
+//        this.edNome.setVisibility(View.VISIBLE);
+//        this.edAppid.setVisibility(View.VISIBLE);
+//        this.edDeveloper.setVisibility(View.VISIBLE);
+//        this.edPublisher.setVisibility(View.VISIBLE);
+//        this.edPositiveNegativeUserScore.setVisibility(View.VISIBLE);
+//        this.edCCUYesterdayToday.setVisibility(View.VISIBLE);
+//        this.edPriceInitialPrice.setVisibility(View.VISIBLE);
+//        this.edLanguages.setVisibility(View.VISIBLE);;
+//        this.edGenre.setVisibility(View.VISIBLE);
+////        this.progressBarJogo.setVisibility(View.INVISIBLE);
+//    }
 }
