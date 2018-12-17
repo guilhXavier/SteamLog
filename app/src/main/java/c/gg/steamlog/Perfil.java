@@ -44,6 +44,8 @@ public class Perfil extends AppCompatActivity {
         if(cadastroLogin){
          Uri fotoPerfil = Uri.parse(usuario.getImagens().getArquivoImagem());
          this.imvFotoPerfil.setImageURI(fotoPerfil);
+        }else{
+
         }
         this.tvBemVindo.setText("Bem Vindo,"+usuario.getNickname());
         this.tvEmail.setText("Email:"+usuario.getEmail());

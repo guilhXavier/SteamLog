@@ -2,11 +2,14 @@ package c.gg.steamlog;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +17,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.Toolbar;
+
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 import c.gg.steamlog.Model.Imagens;
 import c.gg.steamlog.Model.Usuario;
@@ -41,7 +48,7 @@ public class Cadastro extends AppCompatActivity {
     private Retrofit retrofitSteam;
     private Usuario usuario;
     private Imagens imagens;
-    private String CaminhoImagem;
+    private String encodedImage, CaminhoImagem;
 
 
     @Override
@@ -71,7 +78,8 @@ public class Cadastro extends AppCompatActivity {
                     usuario.setNickname(edNickname.getText().toString());
                     usuario.setSenha(edSenha.getText().toString());
                     usuario.setSteamid((Long.parseLong(edSteamid.getText().toString())));
-                    imagens.setArquivoImagem(CaminhoImagem);
+//                    imagens.setArquivoImagem(CaminhoImagem);
+                    imagens.setArquivoImagem(encodedImage);
                     imagens.setTipoImagem((short) 1);
 
                     SteamAPIService apiService = retrofitSteam.create(SteamAPIService.class);
@@ -168,10 +176,29 @@ public class Cadastro extends AppCompatActivity {
             if (requestCode == PICK_IMAGE) {
                 Uri selectedImage = data.getData();
                 imvFotoPerfil.setImageURI(selectedImage);
-                Toast.makeText(getApplicationContext(), selectedImage.toString(), Toast.LENGTH_SHORT).show();
-                this.CaminhoImagem = selectedImage.toString();
+                InputStream imageStream = null;
+                try {
+                    imageStream = getContentResolver().openInputStream(selectedImage);
+                    Bitmap imagemSelecionada = BitmapFactory.decodeStream(imageStream);
+                    encodedImage = encodeImage(imagemSelecionada);
+                    Toast.makeText(getApplicationContext(), selectedImage.toString(), Toast.LENGTH_SHORT).show();
+                    this.CaminhoImagem = selectedImage.toString();
+                    System.out.println(encodedImage);
+                }catch(FileNotFoundException e){
+                    e.printStackTrace();
+                }
+
             }
         }
+    }
+
+    private String encodeImage(Bitmap bm) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bm.compress(Bitmap.CompressFormat.PNG,100,baos);
+        byte[] b = baos.toByteArray();
+        String encImage = Base64.encodeToString(b, Base64.DEFAULT);
+
+        return encImage;
     }
 
 

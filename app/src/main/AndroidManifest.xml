@@ -12,7 +12,11 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Home"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
         <activity android:name=".Cadastro" />
         <activity android:name=".Perfil" />
         <activity android:name=".Estatisticas" />

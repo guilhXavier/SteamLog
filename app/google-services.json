@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "479119063066",
+    "firebase_url": "https://steamlog-2k18.firebaseio.com",
+    "project_id": "steamlog-2k18",
+    "storage_bucket": "steamlog-2k18.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:479119063066:android:c471d52de58c43cf",
+        "android_client_info": {
+          "package_name": "c.gg.steamlog"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "479119063066-uk7rdf3silo4vlp440j32pn543vnrnj3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "c.gg.steamlog",
+            "certificate_hash": "186fad88bc9ea797e219f715667f697d779e1104"
+          }
+        },
+        {
+          "client_id": "479119063066-bfqctklljb3n40seokfvarg8gb38me7g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3eM3NNbbpqmXjrwIENBBUknsRTUs9waU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "479119063066-bfqctklljb3n40seokfvarg8gb38me7g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
