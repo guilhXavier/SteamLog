@@ -9,31 +9,25 @@ public class Usuario implements Serializable {
 	private String nickname;
 	private String senha;
 	private long steamid;
-	private String fotoPerfil;
 	private int numJogos;
-	private int numConquistas;
-	private Imagens imagens;
+	private String refFotoPerfil;
 	private ArrayList<Post>listPost;
-	private ArrayList<Ranking>listrankings ; 
 	
 	
 	public Usuario() {
 		
 	}
 	
-	public Usuario(long idUsuario, String email, String nickname, String senha, long steamid, String fotoPerfil,int numJogos, int numConquistas, Imagens imagens, ArrayList<Post> listPost, ArrayList<Ranking> listrankings) {
+	public Usuario(long idUsuario, String email, String nickname, String senha, long steamid, int numJogos, int numConquistas, String refFotoPerfil, ArrayList<Post> listPost, ArrayList<Ranking> listrankings) {
 		super();
 		this.idUsuario = idUsuario;
 		this.email = email;
 		this.nickname = nickname;
 		this.senha = senha;
 		this.steamid = steamid;
-		this.fotoPerfil = fotoPerfil;
 		this.numJogos = numJogos;
-		this.numConquistas = numConquistas;
-		this.imagens = imagens;
+		this.refFotoPerfil = refFotoPerfil;
 		this.listPost = listPost;
-		this.listrankings = listrankings;
 	}
 
 	
@@ -77,14 +71,6 @@ public class Usuario implements Serializable {
 		this.steamid = steamid;
 	}
 
-	public String getFotoPerfil() {
-		return fotoPerfil;
-	}
-
-	public void setFotoPerfil(String fotoPerfil) {
-		this.fotoPerfil = fotoPerfil;
-	}
-
 	public int getNumJogos() {
 		return numJogos;
 	}
@@ -93,20 +79,12 @@ public class Usuario implements Serializable {
 		this.numJogos = numJogos;
 	}
 
-	public int getNumConquistas() {
-		return numConquistas;
+	public String getRefFotoPerfil() {
+		return this.refFotoPerfil;
 	}
 
-	public void setNumConquistas(int numConquistas) {
-		this.numConquistas = numConquistas;
-	}
-
-	public Imagens getImagens() {
-		return this.imagens;
-	}
-
-	public void setImagens(Imagens imagens) {
-		this.imagens = imagens;
+	public void setRefFotoPerfil(String refFotoPerfil) {
+		this.refFotoPerfil = refFotoPerfil;
 	}
 
 	public ArrayList<Post> getListPost() {
@@ -115,14 +93,6 @@ public class Usuario implements Serializable {
 
 	public void setListPost(ArrayList<Post> listPost) {
 		this.listPost = listPost;
-	}
-
-	public ArrayList<Ranking> getListrankings() {
-		return listrankings;
-	}
-
-	public void setListrankings(ArrayList<Ranking> listrankings) {
-		this.listrankings = listrankings;
 	}
 
 	@Override
