@@ -3,7 +3,6 @@ package c.gg.steamlog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -22,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import static c.gg.steamlog.Services.SteamAPIService.BASE_URL_STEAM_API;
 
-public class Amigos extends AppCompatActivity {
+public class AmigosActivity extends AppCompatActivity {
 
     private ListView lvAmigos;
     private List<String> nomes;
@@ -54,7 +53,7 @@ public class Amigos extends AppCompatActivity {
 
                             GetPlayerSummaries getPlayerSummaries = response.body();
                             nomes.add(getPlayerSummaries.getResponse().getPlayers().get(0).getPersonaname());
-                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(Amigos.this, android.R.layout.simple_list_item_1, nomes);
+                            ArrayAdapter<String> adapter = new ArrayAdapter<String>(AmigosActivity.this, android.R.layout.simple_list_item_1, nomes);
                             lvAmigos.setAdapter(adapter);
 
                         }

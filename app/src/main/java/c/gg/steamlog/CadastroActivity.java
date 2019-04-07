@@ -16,7 +16,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -27,7 +26,6 @@ import c.gg.steamlog.Model.Usuario;
 import c.gg.steamlog.ModelSteam.GetOwnedGames;
 import c.gg.steamlog.Services.SteamAPIService;
 import c.gg.steamlog.Services.SteamLogService;
-import c.gg.steamlog.Services.SteamSpyService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,7 +35,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static c.gg.steamlog.Services.SteamAPIService.BASE_URL_STEAM_API;
 import static c.gg.steamlog.Services.SteamLogService.BASE_URL_SERVER;
 
-public class Cadastro extends AppCompatActivity {
+public class CadastroActivity extends AppCompatActivity {
 
     public static final int PICK_IMAGE = 1234;
     private ActionBar actionBar;
@@ -70,7 +68,7 @@ public class Cadastro extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(!(edSenha.getText().toString().equals(edConfirmeSenha.getText().toString()))){
-                    Toast.makeText(Cadastro.this,"As senhas diferentes",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CadastroActivity.this,"As senhas diferentes",Toast.LENGTH_SHORT).show();
                 }else {
                     usuario = new Usuario();
                     imagens = new Imagens();
@@ -111,7 +109,7 @@ public class Cadastro extends AppCompatActivity {
                                                         Log.e("UsuarioResponseError:", "Erro:" + response.code());
                                                     } else {
                                                         usuario = response.body();
-                                                        Intent intent = new Intent(Cadastro.this,Perfil.class);
+                                                        Intent intent = new Intent(CadastroActivity.this, PerfilActivity.class);
                                                         intent.putExtra("usuario",usuario);
                                                         intent.putExtra("cadastro/login",true);
                                                         startActivity(intent);

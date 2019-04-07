@@ -1,21 +1,13 @@
 package c.gg.steamlog;
 
-import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import c.gg.steamlog.Model.Usuario;
 import c.gg.steamlog.Services.SteamLogService;
@@ -27,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import static c.gg.steamlog.Services.SteamLogService.BASE_URL_SERVER;
 
-public class Ranking extends AppCompatActivity {
+public class RankingActivity extends AppCompatActivity {
 
     private ActionBar actionBar;
     private ListView lvRanking;
@@ -40,7 +32,7 @@ public class Ranking extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranking);
         this.inicializarComponentes();
-        this.actionBar.setTitle("Ranking");
+        this.actionBar.setTitle("RankingActivity");
 
 
         SteamLogService service = retrofitServer.create(SteamLogService.class);
@@ -52,7 +44,7 @@ public class Ranking extends AppCompatActivity {
                     Log.e("ResponseErro:","Error: "+response.code());
                 } else {
                     listUsuario = response.body();
-                    ArrayAdapter<Usuario> adapter = new ArrayAdapter<Usuario>(Ranking.this,android.R.layout.simple_list_item_1,listUsuario);
+                    ArrayAdapter<Usuario> adapter = new ArrayAdapter<Usuario>(RankingActivity.this,android.R.layout.simple_list_item_1,listUsuario);
                     lvRanking.setAdapter(adapter);
                 }
             }

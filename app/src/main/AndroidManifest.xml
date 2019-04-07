@@ -11,15 +11,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Home"
+            android:name=".HomeActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".Cadastro" />
-        <activity android:name=".Perfil" />
-        <activity android:name=".Estatisticas" />
+        <activity android:name=".CadastroActivity" />
+        <activity android:name=".PerfilActivity" />
+        <activity android:name=".EstatisticasActivity" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
@@ -29,12 +29,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Jogo" />
-        <activity android:name=".Ranking" />
-        <activity android:name=".ListaPost" />
-        <activity android:name=".Amigos" />
-        <activity android:name=".FazerPost" />
-        <activity android:name=".VerPost"></activity>
+        <activity android:name=".JogoActivity" />
+        <activity android:name=".RankingActivity" />
+        <activity android:name=".ListaPostActivity" />
+        <activity android:name=".AmigosActivity" />
+        <activity android:name=".FazerPostActivity" />
+        <activity android:name=".VerPostActivity"></activity>
     </application>
 
 </manifest>

@@ -12,13 +12,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import c.gg.steamlog.Model.Usuario;
 
-public class Perfil extends AppCompatActivity {
+public class PerfilActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayoutPerfil;
     private ActionBarDrawerToggle toggle;
@@ -59,20 +57,20 @@ public class Perfil extends AppCompatActivity {
                 switch (item.getItemId()){
 
                     case R.id.nav_estatisticas:
-                         intent = new Intent(Perfil.this,Estatisticas.class);
+                         intent = new Intent(PerfilActivity.this, EstatisticasActivity.class);
                         startActivity(intent);
                         break;
                     case R.id.nav_ranking:
-                        intent = new Intent(Perfil.this,Ranking.class);
+                        intent = new Intent(PerfilActivity.this, RankingActivity.class);
                         startActivity(intent);
                         break;
                     case R.id.nav_post:
-                        intent = new Intent(Perfil.this, ListaPost.class);
+                        intent = new Intent(PerfilActivity.this, ListaPostActivity.class);
                         intent.putExtra("usuario",usuario);
                         startActivity(intent);
                         break;
                     case R.id.nav_amigos:
-                        intent = new Intent(Perfil.this, Amigos.class);
+                        intent = new Intent(PerfilActivity.this, AmigosActivity.class);
                         intent.putExtra("usuario", usuario);
                         startActivity(intent);
                         break;

@@ -25,7 +25,7 @@ import static c.gg.steamlog.Services.SteamAPIService.BASE_URL_STEAM_API;
 import static c.gg.steamlog.Services.SteamLogService.BASE_URL_SERVER;
 import static c.gg.steamlog.Services.SteamSpyService.BASE_URL_STEAM_SPY;
 
-public class Jogo extends AppCompatActivity {
+public class JogoActivity extends AppCompatActivity {
 
     private ActionBar actionBar;
     private TextView edNome, edAppid, edDeveloper, edPublisher, edPositiveReviews, edNegativeReviews, edUserScore, edPrice, edInitialPrice, edDiscount, edLanguages, edGenre, edCCUYesterday, edCCUToday;
@@ -37,7 +37,7 @@ public class Jogo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jogo);
         inicializarComponentes();
-        actionBar.setTitle("Jogo");
+        actionBar.setTitle("JogoActivity");
         final Intent meuIntent = getIntent();
 
         SteamSpyService steamSpyService = retrofitSteamSpy.create(SteamSpyService.class);

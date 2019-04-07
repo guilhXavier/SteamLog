@@ -10,11 +10,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Switch;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import c.gg.steamlog.Model.Postagem;
 import c.gg.steamlog.Model.Usuario;
@@ -27,7 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import static c.gg.steamlog.Services.SteamLogService.BASE_URL_SERVER;
 
-public class ListaPost extends AppCompatActivity {
+public class ListaPostActivity extends AppCompatActivity {
 
     private ActionBar actionBar;
     private ListView lvPost;
@@ -41,7 +38,7 @@ public class ListaPost extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_post);
         this.incrementarComponentes();
-        this.actionBar.setTitle("ListaPost");
+        this.actionBar.setTitle("ListaPostActivity");
         usuario = (Usuario) getIntent().getSerializableExtra("usuario");
 
         SteamLogService service = retrofitServer.create(SteamLogService.class);
@@ -53,12 +50,12 @@ public class ListaPost extends AppCompatActivity {
                     Log.e("ResponseErro:","Error: "+response.code());
                 } else {
                     listPostagens = response.body();
-                    ArrayAdapter<Postagem> adapter = new ArrayAdapter<Postagem>(ListaPost.this,android.R.layout.simple_list_item_1,listPostagens);
+                    ArrayAdapter<Postagem> adapter = new ArrayAdapter<Postagem>(ListaPostActivity.this,android.R.layout.simple_list_item_1,listPostagens);
                     lvPost.setAdapter(adapter);
                     lvPost.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                            Intent intent  = new Intent(ListaPost.this,VerPost.class);
+                            Intent intent  = new Intent(ListaPostActivity.this, VerPostActivity.class);
                             intent.putExtra("postagem",listPostagens.get(position));
                             startActivity(intent);
                         }
@@ -75,7 +72,7 @@ public class ListaPost extends AppCompatActivity {
             this.flButoon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(ListaPost.this,FazerPost.class);
+                    Intent intent = new Intent(ListaPostActivity.this, FazerPostActivity.class);
                     intent.putExtra("usuario",usuario);
                     startActivity(intent);
                 }

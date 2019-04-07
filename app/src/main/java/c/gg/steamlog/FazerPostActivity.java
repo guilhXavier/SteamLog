@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import c.gg.steamlog.Model.Post;
 import c.gg.steamlog.Model.Postagem;
@@ -22,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import static c.gg.steamlog.Services.SteamLogService.BASE_URL_SERVER;
 
-public class FazerPost extends AppCompatActivity {
+public class FazerPostActivity extends AppCompatActivity {
 
     private ActionBar actionBar;
     private EditText edTitulo,edDesc;
@@ -38,7 +37,7 @@ public class FazerPost extends AppCompatActivity {
         setContentView(R.layout.activity_fazer_post);
         this.incrementarComponentes();
         usuario =(Usuario) getIntent().getSerializableExtra("usuario");
-        this.actionBar.setTitle("FazerPost");
+        this.actionBar.setTitle("FazerPostActivity");
         this.btPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,7 +63,7 @@ public class FazerPost extends AppCompatActivity {
                                     if(!response.isSuccessful()){
                                         Log.e("PostResponseFailure:",""+response.message());
                                     } else {
-                                        Intent intent = new Intent(FazerPost.this,ListaPost.class);
+                                        Intent intent = new Intent(FazerPostActivity.this, ListaPostActivity.class);
                                         intent.putExtra("usuario",usuario);
                                         startActivity(intent);
                                     }

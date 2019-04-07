@@ -2,11 +2,7 @@ package c.gg.steamlog;
 
 import android.content.Intent;
 import android.os.Bundle;;
-import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.*;
@@ -24,9 +20,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static c.gg.steamlog.Services.SteamAPIService.BASE_URL_STEAM_API;
-import static c.gg.steamlog.Services.SteamSpyService.BASE_URL_STEAM_SPY;
 
-public class Estatisticas extends AppCompatActivity{
+public class EstatisticasActivity extends AppCompatActivity{
 
     private ActionBar actionBar;
 
@@ -51,14 +46,14 @@ public class Estatisticas extends AppCompatActivity{
                 for(int x = 0; x < getAppListObj.getApplist().getApps().size(); x++){
                     nomes.add(getAppListObj.getApplist().getApps().get(x).getName());
                 }
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(Estatisticas.this, android.R.layout.simple_dropdown_item_1line, nomes);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(EstatisticasActivity.this, android.R.layout.simple_dropdown_item_1line, nomes);
                 atxtNome.setAdapter(adapter);
 
-                Estatisticas.this.btPesquisar.setOnClickListener(new View.OnClickListener() {
+                EstatisticasActivity.this.btPesquisar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         if(atxtNome.getText()!=null){
-                            Intent myIntent = new Intent(Estatisticas.this, Jogo.class);
+                            Intent myIntent = new Intent(EstatisticasActivity.this, JogoActivity.class);
                             Map<String, String> mapaNomesAppid = new HashMap<String, String>();
                             for(int x = 0; x < getAppListObj.getApplist().getApps().size(); x++){
                                 mapaNomesAppid.put(getAppListObj.getApplist().getApps().get(x).getName(), getAppListObj.getApplist().getApps().get(x).getAppid());
@@ -69,7 +64,7 @@ public class Estatisticas extends AppCompatActivity{
                             myIntent.putExtra("appid", Long.parseLong(appid));
                             startActivity(myIntent);
                         }else{
-                            Toast.makeText(Estatisticas.this,"Insira o nome, mi amigo",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EstatisticasActivity.this,"Insira o nome, mi amigo",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

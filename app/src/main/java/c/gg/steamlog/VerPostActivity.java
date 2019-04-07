@@ -20,7 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import static c.gg.steamlog.Services.SteamLogService.BASE_URL_SERVER;
 
-public class VerPost extends AppCompatActivity {
+public class VerPostActivity extends AppCompatActivity {
 
     private ActionBar actionBar;
     private TextView tvTitulo,tvDesc,tvAutor;

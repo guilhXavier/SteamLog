@@ -11,12 +11,9 @@ import android.widget.*;
 
 
 import c.gg.steamlog.Model.Usuario;
-import c.gg.steamlog.ModelSteam.GetAppDetailsRequest;
-import c.gg.steamlog.ModelSteam.GetNumberOfConcurrentPlayers;
 import c.gg.steamlog.ModelSteam.GetOwnedGames;
 import c.gg.steamlog.Services.SteamAPIService;
 import c.gg.steamlog.Services.SteamLogService;
-import c.gg.steamlog.Services.SteamSpyService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -25,9 +22,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import static c.gg.steamlog.Services.SteamAPIService.BASE_URL_STEAM_API;
 import static c.gg.steamlog.Services.SteamLogService.BASE_URL_SERVER;
-import static c.gg.steamlog.Services.SteamSpyService.BASE_URL_STEAM_SPY;
 
-public class Home extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
     private EditText edNickname, edSenha;
     private Button btLogar;
@@ -71,7 +67,7 @@ public class Home extends AppCompatActivity {
                                                 if(!response.isSuccessful()){
                                                     Log.e("EditarResponseFailure:","Erro:"+response.code());
                                                 }else {
-                                                    Intent intent = new Intent(Home.this,Perfil.class);
+                                                    Intent intent = new Intent(HomeActivity.this, PerfilActivity.class);
                                                     intent.putExtra("usuario",usuario);
                                                     intent.putExtra("cadastro/login",false);
                                                     startActivity(intent);
@@ -105,7 +101,7 @@ public class Home extends AppCompatActivity {
         this.tvRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Home.this,Cadastro.class);
+                Intent intent = new Intent(HomeActivity.this, CadastroActivity.class);
                 startActivity(intent);
             }
         });

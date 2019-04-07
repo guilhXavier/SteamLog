@@ -3,7 +3,7 @@ package c.gg.steamlog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class ListaFavoritos extends AppCompatActivity {
+public class ListaFavoritosActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
